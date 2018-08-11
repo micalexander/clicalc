@@ -1,0 +1,16 @@
+{
+    "name": "root/php-calculator",
+    "authors": [
+        {
+            "name": "alexanderm",
+            "email": "michael.alexander@tivityhealth.com"
+        }
+    ],
+    "autoload": {
+    "files": [
+        "src/Helpers.php"
+    ],
+      "psr-4": {"cliCalc\\": "src/"}
+    },
+    "require": {}
+}

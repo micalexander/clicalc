@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+namespace cliCalc;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$calculator = new Calculator();
+
+$pattern = '/^\d+[\\'.implode('\d*|\\', available_operations($argv[1])).'\d*]*\d+$/';
+
+if (!preg_match($pattern, $argv[1])) {
+  death_note('equation must be formtted like so: [digits][operator:('.implode('|', available_operations()).')][digits]');
+}
+
+
+if (total_operators_passed($argv[1]) < 1) {
+  death_note('no operator found');
+}
+
+$equation_pattern = '/(\d+|\\'.implode('|\\', available_operations($argv[1])).')/';
+$equation = trim(preg_replace($equation_pattern, ' ${1} ', $argv[1]));
+
+echo "\n".$equation.' = '.$calculator->get($argv[1])."\n\n";
