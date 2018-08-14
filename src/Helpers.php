@@ -27,6 +27,20 @@ function total_operators_passed($input) {
   return intval(count(fragmentify($input))/2);
 }
 
+function priority_operators() {
+  $priority_map = [];
+
+  foreach (available_operations() as $name => $operator) {
+    $reflector = new \ReflectionClass(__NAMESPACE__.'\\Operations\\'.$name);
+    if (property_exists(__NAMESPACE__.'\\Operations\\'.$name, 'priority')) {
+
+      $priority_map[$reflector->getStaticPropertyValue('priority')] = $reflector->getStaticPropertyValue('operator');
+    }
+  }
+
+  return array_values($priority_map);
+
+}
 function death_note($note) {
   echo "\n".$note."\n\n";
   die;

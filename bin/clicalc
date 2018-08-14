@@ -12,7 +12,6 @@ if (!preg_match($pattern, $argv[1])) {
   death_note('equation must be formtted like so: [digits][operator:('.implode('|', available_operations()).')][digits]');
 }
 
-
 if (total_operators_passed($argv[1]) < 1) {
   death_note('no operator found');
 }
